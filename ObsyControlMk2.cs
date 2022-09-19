@@ -28,6 +28,7 @@ using System.Windows.Forms;
 // 8.8 - enhanced mount relay disconnect - made method and included scan of "mount" in switch description too
 // 8.9 - problems with Unity driver - direct relay1 disconnect for mount, and longer timer interval to 2000 ms
 // 9.0 - improved clarity of relay power control (when Unity server is fixed, poll will return to 1000ms)
+// 9.2 - after Unity server update, put back quick relay status refresh
 
 namespace Observatory
 {
@@ -60,6 +61,10 @@ namespace Observatory
         private double[] rainvalues = new double[120];
         private int samplecount = 0;  // sampling value increments every 2 seconds
         private int charttype = 0;  //selection variable
+        // changes the true and false around on the following two lines to change the relay logic sense
+        private const bool relayon = true;
+        private const bool relayoff = false;
+        private short relayinterval = 0;
 
         public Obsyform()
         {
@@ -284,7 +289,8 @@ namespace Observatory
                     btnRelay2.Text = relay.GetSwitchDescription(1);
                     btnRelay3.Text = relay.GetSwitchDescription(2);
                     btnRelay4.Text = relay.GetSwitchDescription(3);
-                    getrelaystate();
+                    // for (short i=0;i<4;i++) getrelaystate(i);  // for one at a time
+                    getrelaysstate();  // all at once
                 }
                 else
                 {
@@ -887,7 +893,7 @@ namespace Observatory
                 {
                     if (relay.GetSwitchName(i).Contains("ount") || relay.GetSwitchDescription(i).Contains("ount"))  // (mount or Mount)
                     {
-                        relay.SetSwitch(i, false);  // turn relay off
+                        relay.SetSwitch(i, relayoff);  // turn relay off
                         power[i] = false;
                     }
                 }
@@ -1281,7 +1287,6 @@ namespace Observatory
                             if (relayconnected)
                             {
                                 if (mountconnected) disctelescope();
-                                // normal switch logic
                                 TurnOffMountRelay();
                                 aborted = true;
                                 statusbox.AppendText(Environment.NewLine + "mount power off");
@@ -1308,7 +1313,7 @@ namespace Observatory
                     }
                 }
             }
-
+            
             catch (Exception)
             {
                 statusbox.AppendText(Environment.NewLine + "mount ASCOM error");
@@ -1337,14 +1342,25 @@ namespace Observatory
             }
         }
 
-        // small routine to update relays, in case there is a parallel hub command
+        // small routine to update relays, in case there is a parallel hub command - every 4 cycles
         private void refreshrelay()
         {
-            try
+            /*try   // one at a time
+            {
+                if (relayconnected)
+                    {
+                    if (relayinterval > 3) relayinterval=0;
+                    getrelaystate(relayinterval);
+                    showrelaystate();
+                    relayinterval++;
+                }
+            }
+            */
+            try  // all at once
             {
                 if (relayconnected)
                 {
-                    getrelaystate();
+                    getrelaysstate();
                     showrelaystate();
                 }
             }
@@ -1584,17 +1600,15 @@ namespace Observatory
         mountsafe has these outcomes:
         "Parked"
         "Not at Park"
-        "Unknown" -- is overridden to "Parked" if sensor says it is parked
+        "Parked" is sensor(no mount) or sensor/mount confirm
         "Tracking"
         "Homed"
         "Slewing"
-        Revised logic to avoid parked mount tracking away - if mount not connected, sensor gives parked/not parked
-        if mount is connected and it is slewing/tracking - not parked
-        if mount is not tracking and sensor shows park - parked
-                */
+        any movement (tracking, slewing, homing) from mount invalidates Park status
+         */
         private void refreshmount()
         {
-            bool parkconfirm;
+            bool parkconfirm;  // park sensor status
             try
             {
                 string trackingtext = "Tracking On"; // assume it is not tracking by default
@@ -1668,8 +1682,8 @@ namespace Observatory
             {
                 if (relayconnected)
                 {
-                    if (power[0]) relay.SetSwitch(0, false);  // turn relay off                   
-                    else relay.SetSwitch(0, true);
+                    if (power[0]) relay.SetSwitch(0, relayoff);  // turn relay off                   
+                    else relay.SetSwitch(0, relayon);
                 }
             }
             catch (Exception)
@@ -1683,8 +1697,8 @@ namespace Observatory
             {
                 if (relayconnected)
                 {
-                    if (power[1]) relay.SetSwitch(1, false);  // turn relay off                   
-                    else relay.SetSwitch(1, true);                  
+                    if (power[1]) relay.SetSwitch(1, relayoff);  // turn relay off                   
+                    else relay.SetSwitch(1, relayon);                  
                 }
             }
             catch (Exception)
@@ -1698,8 +1712,8 @@ namespace Observatory
             {
                 if (relayconnected)
                 {
-                    if (power[2]) relay.SetSwitch(2, false);  // turn relay off                   
-                    else relay.SetSwitch(2, true);
+                    if (power[2]) relay.SetSwitch(2, relayoff);  // turn relay off                   
+                    else relay.SetSwitch(2, relayon);
                 }
             }
             catch (Exception)
@@ -1713,8 +1727,8 @@ namespace Observatory
             {
                 if (relayconnected)
                 {
-                    if (power[3]) relay.SetSwitch(3, false);  // turn relay off                   
-                    else relay.SetSwitch(3, true);
+                    if (power[3]) relay.SetSwitch(3, relayoff);  // turn relay off                   
+                    else relay.SetSwitch(3, relayon);
                 }
             }
             catch (Exception)
@@ -1724,14 +1738,16 @@ namespace Observatory
         }
 
         // reads relay position - normal logic
-        // to reduce polling frequency, relaystate is refreshed in a cycle, rather than alltogther.
-        private void getrelaystate()
+        // temporary reduction in polling frequency due to issue with Pegasus driver
+        //private void getrelaystate(short relaynumber) // one at a time
+        private void getrelaysstate()
         {
             try
             {
                 if (relayconnected)
                 {
-                    for (short i = 0; i < 4; i++) power[i] = relay.GetSwitch(i);                  
+                    for (short i = 0; i < 4; i++) power[i] = relay.GetSwitch(i); //all at once
+                    //power[relaynumber] = relay.GetSwitch(relaynumber); // one at a time
                 }
             }
             catch (Exception)
@@ -1789,7 +1805,7 @@ namespace Observatory
                 {
                     for (short i = 0; i < 4; i++)
                     {
-                        relay.SetSwitch(i, false); // turn off all relays
+                        relay.SetSwitch(i, relayoff); // turn off all relays
                         power[i] = false;                                 
                     }
                     discrelay();  // now disconnect ASCOM driver
