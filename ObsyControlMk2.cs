@@ -1,4 +1,4 @@
-﻿using ASCOM.DeviceInterface;
+using ASCOM.DeviceInterface;
 using ASCOM.DriverAccess;
 using System;
 using System.Drawing;
