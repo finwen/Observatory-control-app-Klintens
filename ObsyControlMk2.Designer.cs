@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Obsyform));
             this.settupgroup = new System.Windows.Forms.GroupBox();
             this.btnRelaySel = new System.Windows.Forms.Button();
@@ -101,6 +101,8 @@
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnDisBeep = new System.Windows.Forms.Button();
+            this.btnEnBeep = new System.Windows.Forms.Button();
             this.btnDisParkSense = new System.Windows.Forms.Button();
             this.btnEnRainSense = new System.Windows.Forms.Button();
             this.btnDisRainSense = new System.Windows.Forms.Button();
@@ -685,7 +687,7 @@
             this.btnAutoOpen.Name = "btnAutoOpen";
             this.btnAutoOpen.Size = new System.Drawing.Size(87, 23);
             this.btnAutoOpen.TabIndex = 12;
-            this.btnAutoOpen.Text = "Que Open";
+            this.btnAutoOpen.Text = "Auto Open";
             this.btnAutoOpen.UseVisualStyleBackColor = false;
             this.btnAutoOpen.Click += new System.EventHandler(this.queautoroofopen);
             // 
@@ -700,7 +702,7 @@
             this.btnAutoClose.Name = "btnAutoClose";
             this.btnAutoClose.Size = new System.Drawing.Size(87, 23);
             this.btnAutoClose.TabIndex = 13;
-            this.btnAutoClose.Text = "Que Close";
+            this.btnAutoClose.Text = "Auto Close";
             this.btnAutoClose.UseVisualStyleBackColor = false;
             this.btnAutoClose.Click += new System.EventHandler(this.queautoroofclose);
             // 
@@ -1113,29 +1115,29 @@
             // 
             this.chart1.BackColor = System.Drawing.Color.Gray;
             this.chart1.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            chartArea1.AxisX.LabelStyle.ForeColor = System.Drawing.Color.White;
-            chartArea1.AxisX.LineColor = System.Drawing.Color.White;
-            chartArea1.AxisX.LineWidth = 2;
-            chartArea1.AxisX.TitleForeColor = System.Drawing.Color.White;
-            chartArea1.AxisX2.LabelStyle.ForeColor = System.Drawing.Color.White;
-            chartArea1.AxisX2.LineColor = System.Drawing.Color.White;
-            chartArea1.AxisY.LabelStyle.ForeColor = System.Drawing.Color.White;
-            chartArea1.AxisY.LineColor = System.Drawing.Color.White;
-            chartArea1.AxisY.LineWidth = 2;
-            chartArea1.AxisY.TitleForeColor = System.Drawing.Color.White;
-            chartArea1.AxisY2.LabelStyle.ForeColor = System.Drawing.Color.White;
-            chartArea1.AxisY2.LineColor = System.Drawing.Color.White;
-            chartArea1.BackColor = System.Drawing.Color.DimGray;
-            chartArea1.BorderWidth = 2;
-            chartArea1.Name = "CloudCover";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea2.AxisX.LabelStyle.ForeColor = System.Drawing.Color.White;
+            chartArea2.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea2.AxisX.LineWidth = 2;
+            chartArea2.AxisX.TitleForeColor = System.Drawing.Color.White;
+            chartArea2.AxisX2.LabelStyle.ForeColor = System.Drawing.Color.White;
+            chartArea2.AxisX2.LineColor = System.Drawing.Color.White;
+            chartArea2.AxisY.LabelStyle.ForeColor = System.Drawing.Color.White;
+            chartArea2.AxisY.LineColor = System.Drawing.Color.White;
+            chartArea2.AxisY.LineWidth = 2;
+            chartArea2.AxisY.TitleForeColor = System.Drawing.Color.White;
+            chartArea2.AxisY2.LabelStyle.ForeColor = System.Drawing.Color.White;
+            chartArea2.AxisY2.LineColor = System.Drawing.Color.White;
+            chartArea2.BackColor = System.Drawing.Color.DimGray;
+            chartArea2.BorderWidth = 2;
+            chartArea2.Name = "CloudCover";
+            this.chart1.ChartAreas.Add(chartArea2);
             this.chart1.Location = new System.Drawing.Point(1, 39);
             this.chart1.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "CloudCover";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Name = "Cloud";
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "CloudCover";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Name = "Cloud";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(369, 289);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -1157,6 +1159,8 @@
             // groupBox6
             // 
             this.groupBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.groupBox6.Controls.Add(this.btnDisBeep);
+            this.groupBox6.Controls.Add(this.btnEnBeep);
             this.groupBox6.Controls.Add(this.btnDisParkSense);
             this.groupBox6.Controls.Add(this.btnEnRainSense);
             this.groupBox6.Controls.Add(this.btnDisRainSense);
@@ -1166,10 +1170,40 @@
             this.groupBox6.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.groupBox6.Size = new System.Drawing.Size(193, 206);
+            this.groupBox6.Size = new System.Drawing.Size(193, 220);
             this.groupBox6.TabIndex = 12;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Enable / Disable Safety Sensors";
+            // 
+            // btnDisBeep
+            // 
+            this.btnDisBeep.BackColor = System.Drawing.Color.Moccasin;
+            this.btnDisBeep.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnDisBeep.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDisBeep.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnDisBeep.Location = new System.Drawing.Point(31, 179);
+            this.btnDisBeep.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.btnDisBeep.Name = "btnDisBeep";
+            this.btnDisBeep.Size = new System.Drawing.Size(131, 23);
+            this.btnDisBeep.TabIndex = 12;
+            this.btnDisBeep.Text = "Disable Beeper";
+            this.btnDisBeep.UseVisualStyleBackColor = false;
+            this.btnDisBeep.Click += new System.EventHandler(this.disablebeep);
+            // 
+            // btnEnBeep
+            // 
+            this.btnEnBeep.BackColor = System.Drawing.Color.Honeydew;
+            this.btnEnBeep.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnEnBeep.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEnBeep.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnEnBeep.Location = new System.Drawing.Point(31, 152);
+            this.btnEnBeep.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.btnEnBeep.Name = "btnEnBeep";
+            this.btnEnBeep.Size = new System.Drawing.Size(131, 23);
+            this.btnEnBeep.TabIndex = 11;
+            this.btnEnBeep.Text = "Enable Beeper";
+            this.btnEnBeep.UseVisualStyleBackColor = false;
+            this.btnEnBeep.Click += new System.EventHandler(this.enablebeep);
             // 
             // btnDisParkSense
             // 
@@ -1177,7 +1211,7 @@
             this.btnDisParkSense.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnDisParkSense.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDisParkSense.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnDisParkSense.Location = new System.Drawing.Point(31, 166);
+            this.btnDisParkSense.Location = new System.Drawing.Point(31, 114);
             this.btnDisParkSense.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.btnDisParkSense.Name = "btnDisParkSense";
             this.btnDisParkSense.Size = new System.Drawing.Size(131, 23);
@@ -1207,7 +1241,7 @@
             this.btnDisRainSense.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnDisRainSense.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDisRainSense.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnDisRainSense.Location = new System.Drawing.Point(31, 71);
+            this.btnDisRainSense.Location = new System.Drawing.Point(31, 53);
             this.btnDisRainSense.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.btnDisRainSense.Name = "btnDisRainSense";
             this.btnDisRainSense.Size = new System.Drawing.Size(131, 23);
@@ -1222,7 +1256,7 @@
             this.btnEnParkSense.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnEnParkSense.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnParkSense.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnEnParkSense.Location = new System.Drawing.Point(31, 118);
+            this.btnEnParkSense.Location = new System.Drawing.Point(31, 87);
             this.btnEnParkSense.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.btnEnParkSense.Name = "btnEnParkSense";
             this.btnEnParkSense.Size = new System.Drawing.Size(131, 23);
@@ -1243,7 +1277,7 @@
             this.groupBox5.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.groupBox5.Size = new System.Drawing.Size(135, 206);
+            this.groupBox5.Size = new System.Drawing.Size(135, 220);
             this.groupBox5.TabIndex = 11;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "One-off Commands";
@@ -1271,7 +1305,7 @@
             this.btnForceClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnForceClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnForceClose.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnForceClose.Location = new System.Drawing.Point(16, 71);
+            this.btnForceClose.Location = new System.Drawing.Point(16, 75);
             this.btnForceClose.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.btnForceClose.Name = "btnForceClose";
             this.btnForceClose.Size = new System.Drawing.Size(102, 23);
@@ -1287,7 +1321,7 @@
             this.btnForcePark.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnForcePark.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnForcePark.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnForcePark.Location = new System.Drawing.Point(16, 118);
+            this.btnForcePark.Location = new System.Drawing.Point(16, 127);
             this.btnForcePark.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.btnForcePark.Name = "btnForcePark";
             this.btnForcePark.Size = new System.Drawing.Size(102, 23);
@@ -1303,7 +1337,7 @@
             this.btnForceHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnForceHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnForceHome.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnForceHome.Location = new System.Drawing.Point(16, 166);
+            this.btnForceHome.Location = new System.Drawing.Point(16, 179);
             this.btnForceHome.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.btnForceHome.Name = "btnForceHome";
             this.btnForceHome.Size = new System.Drawing.Size(102, 23);
@@ -1338,7 +1372,7 @@
             this.MaximumSize = new System.Drawing.Size(400, 400);
             this.MinimumSize = new System.Drawing.Size(400, 400);
             this.Name = "Obsyform";
-            this.Text = "Observatory Control Panel v9.2";
+            this.Text = "Observatory Control Panel v10.1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.settupgroup.ResumeLayout(false);
             this.connectgroup.ResumeLayout(false);
@@ -1445,6 +1479,8 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.ComboBox btngraphsel;
         private System.Windows.Forms.Label select;
+        private System.Windows.Forms.Button btnDisBeep;
+        private System.Windows.Forms.Button btnEnBeep;
     }
 }
 

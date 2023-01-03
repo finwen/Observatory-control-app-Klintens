@@ -29,6 +29,8 @@ using System.Windows.Forms;
 // 8.9 - problems with Unity driver - direct relay1 disconnect for mount, and longer timer interval to 2000 ms
 // 9.0 - improved clarity of relay power control (when Unity server is fixed, poll will return to 1000ms)
 // 9.2 - after Unity server update, put back quick relay status refresh
+// 10.0 - added beeper enable and disable - use with ARDUINO driver 3.0 and ASCOM driver  3.0
+// 10.1 - added safety shutdown 
 
 namespace Observatory
 {
@@ -64,7 +66,7 @@ namespace Observatory
         // changes the true and false around on the following two lines to change the relay logic sense
         private const bool relayon = true;
         private const bool relayoff = false;
-        private short relayinterval = 0;
+        //private short relayinterval = 0; // used for original Pegasus relay box that needed slow polled switch reads
 
         public Obsyform()
         {
@@ -330,6 +332,7 @@ namespace Observatory
                     chart1.ChartAreas[0].AxisY.Maximum = 25;
                     btngraphsel.Text = "Temp C";
                     refreshweather();
+
                 }
                 else
                 {
@@ -1020,6 +1023,16 @@ namespace Observatory
                 btnEnRainSense.BackColor = Color.Honeydew;
                 btnDisRainSense.BackColor = Color.DarkOrange;
             }
+            if (dome.CommandBool("BEEPSTATUS", false))
+            {
+                btnEnBeep.BackColor = Color.LightGreen;
+                btnDisBeep.BackColor = Color.Moccasin;
+            }
+            else
+            {
+                btnEnBeep.BackColor = Color.Honeydew;
+                btnDisBeep.BackColor = Color.DarkOrange;
+            }
         }
 
         // special command outside standard ASCOM to modify sensor usage in Arduino
@@ -1104,6 +1117,47 @@ namespace Observatory
                 statusbox.AppendText(Environment.NewLine + "park enable error");
             }
         }
+
+
+        private void enablebeep(object sender, EventArgs e)
+        {
+            try
+            {
+                if (roofConnected && !busy)
+                {
+                    busy = true;
+                    dome.CommandBlind("BEEPON", false);
+                    System.Threading.Thread.Sleep(2000);
+                    sensorDisplay();
+                    busy = false;
+                }
+            }
+            catch (Exception)
+            {
+                statusbox.AppendText(Environment.NewLine + "park enable error");
+            }
+        }
+
+        private void disablebeep(object sender, EventArgs e)
+        {
+            try
+            {
+                if (roofConnected && !busy)
+                {
+                    busy = true;
+                    dome.CommandBlind("BEEPOFF", false);
+                    System.Threading.Thread.Sleep(2000);
+                    sensorDisplay();
+                    busy = false;
+                }
+            }
+            catch (Exception)
+            {
+                statusbox.AppendText(Environment.NewLine + "park enable error");
+            }
+        }
+
+
 
         // toggles que open trigger flag if roof is connected for auto open when safe
         private void queautoroofopen(object sender, EventArgs e)
@@ -1207,10 +1261,11 @@ namespace Observatory
                             busy = true;
                             dome.CloseShutter();  // if mount parked, close roof
                             busy = false;
+                            if (!noRain) TurnOffMountRelay(); // for extreme poor conditions, shut down
                             // disable both que close and que open for poor conditions
-                            queClose = false;
-                            btnAutoClose.BackColor = Color.DarkOrange;
-                            btnAutoClose.ForeColor = Color.White;
+                            //queClose = false;
+                            //btnAutoClose.BackColor = Color.DarkOrange;
+                            //btnAutoClose.ForeColor = Color.White;
                             queOpen = false;
                             btnAutoOpen.BackColor = Color.DarkOrange;
                             btnAutoOpen.ForeColor = Color.White;
@@ -1498,6 +1553,12 @@ namespace Observatory
                 statusbox.AppendText(Environment.NewLine + "weather error");
             }
         }
+
+        private void newtest(object sender, EventArgs e)
+        {
+            pressuretext.Text = "hello world";
+        }
+
 
         // routine to change over the graph data source and axis and update
         private void graphselect(object sender, EventArgs e)
