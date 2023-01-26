@@ -375,6 +375,15 @@ namespace Observatory
                         btnConnSafety.ForeColor = Color.Gray;
                         btnDiscSafety.ForeColor = Color.White;
                     }
+                    else if (safetyId == "ASCOM.CloudWatcher.SafetyMonitor")
+                    {
+                        safe = new SafetyMonitor(safetyId);
+                        safe.Connected = true;
+                        safetyconnected = true;
+                        imagingtext.Text = "connected";
+                        btnConnSafety.ForeColor = Color.Gray;
+                        btnDiscSafety.ForeColor = Color.White;
+                    }
                 }
                 else
                 {
