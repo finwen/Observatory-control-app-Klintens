@@ -31,6 +31,7 @@ using System.Windows.Forms;
 // 9.2 - after Unity server update, put back quick relay status refresh
 // 10.0 - added beeper enable and disable - use with ARDUINO driver 3.0 and ASCOM driver  3.0
 // 10.1 - added safety shutdown 
+// 10.2 - modified to use a range of safety monitors but still fires up AAG CoudWatcher if it detect file output
 
 namespace Observatory
 {
@@ -48,6 +49,7 @@ namespace Observatory
         private string mountsafe, roofsafe;      // used for local storage
         private ShutterState roofstatus;             // used to store shutter status
         String path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ASCOM\\Obsy";
+        String safetypath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AAG";
         private bool queOpen, queClose, noRain, goodConditions, clearAir, clearSky; // boolean flags for deciding if roof is on "auto" mode operation
         private double maxhumidity; // threshold for fog/mist
         private int mountimeout;  // period in multiples of 2 seconds for error condition to apply to movements
@@ -360,7 +362,7 @@ namespace Observatory
             {
                 if (safetyId != null)
                 {
-                    if (safetyId == "ASCOM.Boltwood.OkToOpen.SafetyMonitor" || safetyId == "ASCOM.Boltwood.OkToImage.SafetyMonitor")
+                    if (File.Exists(safetypath + "\\AAG_SLD.dat")) // detect presence of AAG Cloudwatcher
                     {
                         Type foo = Type.GetTypeFromProgID("AAG_CloudWatcher.CloudWatcher");
                         dynamic oCW;
