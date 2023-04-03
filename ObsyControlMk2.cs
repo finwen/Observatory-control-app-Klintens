@@ -61,7 +61,7 @@ namespace Observatory
         private double[] tempvalues = new double[120];
         private double[] humidvalues = new double[120];
         private double[] dewvalues = new double[120];
-        private double[] pressvalues = new double[120];
+        private double[] SQMvalues = new double[120];
         private double[] rainvalues = new double[120];
         private int samplecount = 0;  // sampling value increments every 2 seconds
         private int charttype = 0;  //selection variable
@@ -80,6 +80,7 @@ namespace Observatory
             humidtext.Text = "not connected";
             temptext.Text = "not connected";
             pressuretext.Text = "not connected";
+            sqmtext.Text = "not connected";
             imagingtext.Text = "not connected";
             statusbox.Text = "";
             // initialise connection box colors
@@ -323,10 +324,12 @@ namespace Observatory
                     humidtext.Text = "connected";
                     pressuretext.Text = "connected";
                     temptext.Text = "connected";
+                    sqmtext.Text = "connected";
                     btnConnWeather.ForeColor = Color.Gray;
                     btnDiscWeather.ForeColor = Color.White;
                     humidtext.BackColor = Color.LightGreen;
                     pressuretext.BackColor = Color.LightGreen;
+                    sqmtext.BackColor = Color.LightGreen;
                     temptext.BackColor = Color.LightGreen;
                     // default chart is XXX
                     charttype = 0;
@@ -341,11 +344,13 @@ namespace Observatory
                     weatherconnected = false;
                     humidtext.Text = "not connected";
                     pressuretext.Text = "not connected";
+                    sqmtext.Text = "not connected";
                     temptext.Text = "not connected";
                     btnConnWeather.ForeColor = Color.White;
                     btnDiscWeather.ForeColor = Color.Gray;
                     humidtext.BackColor = Color.Silver;
                     pressuretext.BackColor = Color.Silver;
+                    sqmtext.BackColor = Color.Silver;
                     temptext.BackColor = Color.Silver;
                 }
             }
@@ -410,8 +415,8 @@ namespace Observatory
             {
                 connectroof(sender, e);
                 connecttelescope(sender, e);
-                connectweather(sender, e);
                 connectsafety(sender, e);
+                connectweather(sender, e);
             }
 
         }
@@ -483,11 +488,13 @@ namespace Observatory
                     humidtext.Text = "not connected";
                     pressuretext.Text = "not connected";
                     temptext.Text = "not connected";
+                    sqmtext.Text = "not connected";
                     btnConnWeather.ForeColor = Color.White;
                     btnDiscWeather.ForeColor = Color.Gray;
                     humidtext.BackColor = Color.Silver;
                     pressuretext.BackColor = Color.Silver;
                     temptext.BackColor = Color.Silver;
+                    sqmtext.BackColor = Color.Silver;   
                 }
             }
             catch (Exception)
@@ -596,6 +603,7 @@ namespace Observatory
                 humidtext.BackColor = Color.Silver;
                 pressuretext.BackColor = Color.Silver;
                 temptext.BackColor = Color.Silver;
+                sqmtext.BackColor = Color.Silver;   
                 statusbox.Clear();
                 result = MessageBox.Show("And relays?", "Disconnecting", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes) this.disconnectrelay(sender, e);
@@ -1535,6 +1543,7 @@ namespace Observatory
                     pressuretext.Text = Math.Round(weather.Pressure, 2).ToString() + " hPa";
                     temptext.Text = Math.Round(weather.Temperature, 2).ToString() + " °C";
                     humidtext.Text = Math.Round(weather.Humidity, 2).ToString() + " %";
+                    sqmtext.Text = Math.Round(weather.SkyQuality, 1).ToString() + "M/asec2";
                     if (weather.Humidity > maxhumidity)
                     {
                         humidtext.BackColor = Color.DarkOrange;
@@ -1555,12 +1564,6 @@ namespace Observatory
                 statusbox.AppendText(Environment.NewLine + "weather error");
             }
         }
-
-        private void newtest(object sender, EventArgs e)
-        {
-            pressuretext.Text = "hello world";
-        }
-
 
         // routine to change over the graph data source and axis and update
         private void graphselect(object sender, EventArgs e)
@@ -1583,11 +1586,11 @@ namespace Observatory
                 chart1.ChartAreas[0].AxisY.Minimum = -10;
                 chart1.ChartAreas[0].AxisY.Maximum = +20;
             }
-            if ((string)btngraphsel.SelectedItem == "pressure hPa")
+            if ((string)btngraphsel.SelectedItem == "sky quality")
             {
                 charttype = 3;
-                chart1.ChartAreas[0].AxisY.Minimum = 940;
-                chart1.ChartAreas[0].AxisY.Maximum = 1040;
+                chart1.ChartAreas[0].AxisY.Minimum = 10;
+                chart1.ChartAreas[0].AxisY.Maximum = 20;
             }
             // update chart values
             ChartDataUpdate(); // update latest values and transpose
@@ -1611,7 +1614,7 @@ namespace Observatory
                 tempvalues[index] = Math.Round(weather.Temperature, 2);
                 humidvalues[index] = Math.Round(weather.Humidity, 2);
                 dewvalues[index] = Math.Round(weather.DewPoint, 2);
-                pressvalues[index] = Math.Round(weather.Pressure, 2);
+                SQMvalues[index] = Math.Round(weather.SkyQuality, 2);
             }
             if ((samplecount >= 7200) && (samplecount % 60 == 0))
             {
@@ -1620,13 +1623,13 @@ namespace Observatory
                     tempvalues[i] = tempvalues[i + 1];
                     humidvalues[i] = humidvalues[i + 1];
                     dewvalues[i] = dewvalues[i + 1];
-                    pressvalues[i] = pressvalues[i + 1];
+                    SQMvalues[i] = SQMvalues[i + 1];
                 }
                 // rhs value is current value
                 tempvalues[119] = Math.Round(weather.Temperature, 2);
                 humidvalues[119] = Math.Round(weather.Humidity, 2);
                 dewvalues[119] = Math.Round(weather.DewPoint, 2);
-                pressvalues[119] = Math.Round(weather.Pressure, 2);
+                SQMvalues[119] = Math.Round(weather.SkyQuality, 2);
             }
             switch (charttype) // copy applicable data into chart array
             {
@@ -1640,7 +1643,7 @@ namespace Observatory
                     for (int i = 0; i < 120; i++) chartvalues[i] = dewvalues[i];
                     break;
                 default:
-                    for (int i = 0; i < 120; i++) chartvalues[i] = pressvalues[i];
+                    for (int i = 0; i < 120; i++) chartvalues[i] = SQMvalues[i];
                     break;
             }
         }

@@ -113,6 +113,8 @@
             this.btnForcePark = new System.Windows.Forms.Button();
             this.btnForceHome = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.sqmtext = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.settupgroup.SuspendLayout();
             this.connectgroup.SuspendLayout();
             this.disconnectgroup.SuspendLayout();
@@ -434,6 +436,8 @@
             // CtrlTabPage
             // 
             this.CtrlTabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CtrlTabPage.Controls.Add(this.sqmtext);
+            this.CtrlTabPage.Controls.Add(this.label2);
             this.CtrlTabPage.Controls.Add(this.LogLabel);
             this.CtrlTabPage.Controls.Add(this.statusbox);
             this.CtrlTabPage.Controls.Add(this.groupBox3);
@@ -467,7 +471,7 @@
             // 
             this.LogLabel.AutoSize = true;
             this.LogLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.LogLabel.Location = new System.Drawing.Point(216, 183);
+            this.LogLabel.Location = new System.Drawing.Point(211, 207);
             this.LogLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.LogLabel.Name = "LogLabel";
             this.LogLabel.Size = new System.Drawing.Size(25, 13);
@@ -478,13 +482,13 @@
             // 
             this.statusbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.statusbox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.statusbox.Location = new System.Drawing.Point(243, 183);
+            this.statusbox.Location = new System.Drawing.Point(243, 207);
             this.statusbox.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.statusbox.Multiline = true;
             this.statusbox.Name = "statusbox";
             this.statusbox.ReadOnly = true;
             this.statusbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.statusbox.Size = new System.Drawing.Size(116, 67);
+            this.statusbox.Size = new System.Drawing.Size(116, 43);
             this.statusbox.TabIndex = 21;
             // 
             // groupBox3
@@ -725,7 +729,7 @@
             // 
             this.pressuretext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.pressuretext.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pressuretext.Location = new System.Drawing.Point(260, 156);
+            this.pressuretext.Location = new System.Drawing.Point(260, 155);
             this.pressuretext.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.pressuretext.Name = "pressuretext";
             this.pressuretext.ReadOnly = true;
@@ -737,7 +741,7 @@
             // 
             this.pressurelabel.AutoSize = true;
             this.pressurelabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pressurelabel.Location = new System.Drawing.Point(210, 159);
+            this.pressurelabel.Location = new System.Drawing.Point(210, 158);
             this.pressurelabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.pressurelabel.Name = "pressurelabel";
             this.pressurelabel.Size = new System.Drawing.Size(48, 13);
@@ -1358,6 +1362,30 @@
             this.label1.TabIndex = 2;
             this.label1.Text = resources.GetString("label1.Text");
             // 
+            // sqmtext
+            // 
+            this.sqmtext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.sqmtext.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.sqmtext.Location = new System.Drawing.Point(260, 179);
+            this.sqmtext.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.sqmtext.Name = "sqmtext";
+            this.sqmtext.ReadOnly = true;
+            this.sqmtext.Size = new System.Drawing.Size(99, 20);
+            this.sqmtext.TabIndex = 24;
+            this.sqmtext.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(221, 182);
+            this.label2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(36, 13);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "Sky Q";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // Obsyform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1372,7 +1400,7 @@
             this.MaximumSize = new System.Drawing.Size(400, 400);
             this.MinimumSize = new System.Drawing.Size(400, 400);
             this.Name = "Obsyform";
-            this.Text = "Observatory Control Panel v10.2";
+            this.Text = "Observatory Control Panel v10.3";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.settupgroup.ResumeLayout(false);
             this.connectgroup.ResumeLayout(false);
@@ -1481,6 +1509,8 @@
         private System.Windows.Forms.Label select;
         private System.Windows.Forms.Button btnDisBeep;
         private System.Windows.Forms.Button btnEnBeep;
+        private System.Windows.Forms.TextBox sqmtext;
+        private System.Windows.Forms.Label label2;
     }
 }
 
