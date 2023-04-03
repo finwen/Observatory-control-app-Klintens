@@ -53,6 +53,8 @@
             this.status = new System.Windows.Forms.Timer(this.components);
             this.tabs = new System.Windows.Forms.TabControl();
             this.CtrlTabPage = new System.Windows.Forms.TabPage();
+            this.sqmtext = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.LogLabel = new System.Windows.Forms.Label();
             this.statusbox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -113,8 +115,6 @@
             this.btnForcePark = new System.Windows.Forms.Button();
             this.btnForceHome = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.sqmtext = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.settupgroup.SuspendLayout();
             this.connectgroup.SuspendLayout();
             this.disconnectgroup.SuspendLayout();
@@ -466,6 +466,30 @@
             this.CtrlTabPage.Size = new System.Drawing.Size(376, 336);
             this.CtrlTabPage.TabIndex = 0;
             this.CtrlTabPage.Text = "Control and Status";
+            // 
+            // sqmtext
+            // 
+            this.sqmtext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.sqmtext.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.sqmtext.Location = new System.Drawing.Point(260, 179);
+            this.sqmtext.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.sqmtext.Name = "sqmtext";
+            this.sqmtext.ReadOnly = true;
+            this.sqmtext.Size = new System.Drawing.Size(99, 20);
+            this.sqmtext.TabIndex = 24;
+            this.sqmtext.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(221, 182);
+            this.label2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(36, 13);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "Sky Q";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // LogLabel
             // 
@@ -1095,7 +1119,7 @@
             "temp C",
             "humidity %",
             "dewpoint C",
-            "pressure hPa"});
+            "sky quality SQM"});
             this.btngraphsel.Location = new System.Drawing.Point(88, 5);
             this.btngraphsel.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.btngraphsel.Name = "btngraphsel";
@@ -1361,30 +1385,6 @@
             this.label1.Size = new System.Drawing.Size(309, 52);
             this.label1.TabIndex = 2;
             this.label1.Text = resources.GetString("label1.Text");
-            // 
-            // sqmtext
-            // 
-            this.sqmtext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.sqmtext.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.sqmtext.Location = new System.Drawing.Point(260, 179);
-            this.sqmtext.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.sqmtext.Name = "sqmtext";
-            this.sqmtext.ReadOnly = true;
-            this.sqmtext.Size = new System.Drawing.Size(99, 20);
-            this.sqmtext.TabIndex = 24;
-            this.sqmtext.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(221, 182);
-            this.label2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 13);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "Sky Q";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Obsyform
             // 

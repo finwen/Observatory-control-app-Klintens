@@ -1543,7 +1543,7 @@ namespace Observatory
                     pressuretext.Text = Math.Round(weather.Pressure, 2).ToString() + " hPa";
                     temptext.Text = Math.Round(weather.Temperature, 2).ToString() + " °C";
                     humidtext.Text = Math.Round(weather.Humidity, 2).ToString() + " %";
-                    sqmtext.Text = Math.Round(weather.SkyQuality, 1).ToString() + "M/asec2";
+                    sqmtext.Text = Math.Round(weather.SkyQuality, 1).ToString() + " M/asec2";
                     if (weather.Humidity > maxhumidity)
                     {
                         humidtext.BackColor = Color.DarkOrange;
@@ -1586,7 +1586,7 @@ namespace Observatory
                 chart1.ChartAreas[0].AxisY.Minimum = -10;
                 chart1.ChartAreas[0].AxisY.Maximum = +20;
             }
-            if ((string)btngraphsel.SelectedItem == "sky quality")
+            if ((string)btngraphsel.SelectedItem == "sky quality SQM")
             {
                 charttype = 3;
                 chart1.ChartAreas[0].AxisY.Minimum = 10;
