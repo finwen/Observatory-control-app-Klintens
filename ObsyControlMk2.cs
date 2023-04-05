@@ -317,6 +317,8 @@ namespace Observatory
             {
                 if (weatherId != null)
                 {
+                    // safety monitor also has environmental sensors
+                    if (!safetyconnected) connectsafety(sender, e);
                     // connect to weatherstick or other device
                     weather = new ObservingConditions(weatherId);
                     weather.Connected = true;
@@ -413,9 +415,9 @@ namespace Observatory
 
             else
             {
+                connectsafety(sender, e);
                 connectroof(sender, e);
                 connecttelescope(sender, e);
-                connectsafety(sender, e);
                 connectweather(sender, e);
             }
 
