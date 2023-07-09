@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Obsyform));
             this.settupgroup = new System.Windows.Forms.GroupBox();
             this.btnRelaySel = new System.Windows.Forms.Button();
@@ -53,6 +53,8 @@
             this.status = new System.Windows.Forms.Timer(this.components);
             this.tabs = new System.Windows.Forms.TabControl();
             this.CtrlTabPage = new System.Windows.Forms.TabPage();
+            this.sqmtext = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.LogLabel = new System.Windows.Forms.Label();
             this.statusbox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -434,6 +436,8 @@
             // CtrlTabPage
             // 
             this.CtrlTabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CtrlTabPage.Controls.Add(this.sqmtext);
+            this.CtrlTabPage.Controls.Add(this.label2);
             this.CtrlTabPage.Controls.Add(this.LogLabel);
             this.CtrlTabPage.Controls.Add(this.statusbox);
             this.CtrlTabPage.Controls.Add(this.groupBox3);
@@ -463,11 +467,35 @@
             this.CtrlTabPage.TabIndex = 0;
             this.CtrlTabPage.Text = "Control and Status";
             // 
+            // sqmtext
+            // 
+            this.sqmtext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.sqmtext.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.sqmtext.Location = new System.Drawing.Point(260, 179);
+            this.sqmtext.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.sqmtext.Name = "sqmtext";
+            this.sqmtext.ReadOnly = true;
+            this.sqmtext.Size = new System.Drawing.Size(99, 20);
+            this.sqmtext.TabIndex = 24;
+            this.sqmtext.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(221, 182);
+            this.label2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(36, 13);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "Sky Q";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // LogLabel
             // 
             this.LogLabel.AutoSize = true;
             this.LogLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.LogLabel.Location = new System.Drawing.Point(216, 183);
+            this.LogLabel.Location = new System.Drawing.Point(211, 207);
             this.LogLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.LogLabel.Name = "LogLabel";
             this.LogLabel.Size = new System.Drawing.Size(25, 13);
@@ -478,13 +506,13 @@
             // 
             this.statusbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.statusbox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.statusbox.Location = new System.Drawing.Point(243, 183);
+            this.statusbox.Location = new System.Drawing.Point(243, 207);
             this.statusbox.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.statusbox.Multiline = true;
             this.statusbox.Name = "statusbox";
             this.statusbox.ReadOnly = true;
             this.statusbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.statusbox.Size = new System.Drawing.Size(116, 67);
+            this.statusbox.Size = new System.Drawing.Size(116, 43);
             this.statusbox.TabIndex = 21;
             // 
             // groupBox3
@@ -725,7 +753,7 @@
             // 
             this.pressuretext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.pressuretext.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pressuretext.Location = new System.Drawing.Point(260, 156);
+            this.pressuretext.Location = new System.Drawing.Point(260, 155);
             this.pressuretext.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.pressuretext.Name = "pressuretext";
             this.pressuretext.ReadOnly = true;
@@ -737,7 +765,7 @@
             // 
             this.pressurelabel.AutoSize = true;
             this.pressurelabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pressurelabel.Location = new System.Drawing.Point(210, 159);
+            this.pressurelabel.Location = new System.Drawing.Point(210, 158);
             this.pressurelabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.pressurelabel.Name = "pressurelabel";
             this.pressurelabel.Size = new System.Drawing.Size(48, 13);
@@ -1091,7 +1119,7 @@
             "temp C",
             "humidity %",
             "dewpoint C",
-            "pressure hPa"});
+            "sky quality SQM"});
             this.btngraphsel.Location = new System.Drawing.Point(88, 5);
             this.btngraphsel.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.btngraphsel.Name = "btngraphsel";
@@ -1115,29 +1143,29 @@
             // 
             this.chart1.BackColor = System.Drawing.Color.Gray;
             this.chart1.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            chartArea2.AxisX.LabelStyle.ForeColor = System.Drawing.Color.White;
-            chartArea2.AxisX.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX.LineWidth = 2;
-            chartArea2.AxisX.TitleForeColor = System.Drawing.Color.White;
-            chartArea2.AxisX2.LabelStyle.ForeColor = System.Drawing.Color.White;
-            chartArea2.AxisX2.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisY.LabelStyle.ForeColor = System.Drawing.Color.White;
-            chartArea2.AxisY.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisY.LineWidth = 2;
-            chartArea2.AxisY.TitleForeColor = System.Drawing.Color.White;
-            chartArea2.AxisY2.LabelStyle.ForeColor = System.Drawing.Color.White;
-            chartArea2.AxisY2.LineColor = System.Drawing.Color.White;
-            chartArea2.BackColor = System.Drawing.Color.DimGray;
-            chartArea2.BorderWidth = 2;
-            chartArea2.Name = "CloudCover";
-            this.chart1.ChartAreas.Add(chartArea2);
+            chartArea1.AxisX.LabelStyle.ForeColor = System.Drawing.Color.White;
+            chartArea1.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisX.LineWidth = 2;
+            chartArea1.AxisX.TitleForeColor = System.Drawing.Color.White;
+            chartArea1.AxisX2.LabelStyle.ForeColor = System.Drawing.Color.White;
+            chartArea1.AxisX2.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisY.LabelStyle.ForeColor = System.Drawing.Color.White;
+            chartArea1.AxisY.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisY.LineWidth = 2;
+            chartArea1.AxisY.TitleForeColor = System.Drawing.Color.White;
+            chartArea1.AxisY2.LabelStyle.ForeColor = System.Drawing.Color.White;
+            chartArea1.AxisY2.LineColor = System.Drawing.Color.White;
+            chartArea1.BackColor = System.Drawing.Color.DimGray;
+            chartArea1.BorderWidth = 2;
+            chartArea1.Name = "CloudCover";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Location = new System.Drawing.Point(1, 39);
             this.chart1.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "CloudCover";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Name = "Cloud";
-            this.chart1.Series.Add(series2);
+            series1.ChartArea = "CloudCover";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Name = "Cloud";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(369, 289);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -1372,7 +1400,7 @@
             this.MaximumSize = new System.Drawing.Size(400, 400);
             this.MinimumSize = new System.Drawing.Size(400, 400);
             this.Name = "Obsyform";
-            this.Text = "Observatory Control Panel v10.1";
+            this.Text = "Observatory Control Panel v10.3";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.settupgroup.ResumeLayout(false);
             this.connectgroup.ResumeLayout(false);
@@ -1481,6 +1509,8 @@
         private System.Windows.Forms.Label select;
         private System.Windows.Forms.Button btnDisBeep;
         private System.Windows.Forms.Button btnEnBeep;
+        private System.Windows.Forms.TextBox sqmtext;
+        private System.Windows.Forms.Label label2;
     }
 }
 
